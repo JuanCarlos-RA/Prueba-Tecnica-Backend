@@ -17,7 +17,21 @@ const transactionModel = require('../models/transactions')
     }
 }
 
+/**
+ * Get a specific transaction
+ * @param {number} pk_transaction transaction primary key
+ * @returns {{pk_transaction: 1, fk_user: 123, description: "Compra de ticket", amount: 500.5 }} transaction schema
+ */
+ const getTransaction = async (pk_transaction) => {
+    try {
+        return await transactionModel.getTransaction(pk_transaction)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
 
 module.exports = {
     createtransaction,
+    getTransaction
 }

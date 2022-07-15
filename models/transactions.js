@@ -18,7 +18,20 @@ const createTransaction = (pk_transaction,fk_user,description, amount) => {
     }
 }
 
+/**
+ * Get a specific transaction
+ * @param {number} pk_transaction transaction primary key
+ * @returns {{pk_transaction: 1, fk_user: 123, description: "Compra de ticket", amount: 500.5 }} transaction schema
+ */
+ const getTransaction = (pk_transaction) => {
+
+    let transaction = postgresql.public.one(`select * from transactions where pk_transaction = '${pk_transaction}'`);
+    return transaction
+}
+
+
 module.exports = {
     createTransaction,
+    getTransaction,
 
 }
