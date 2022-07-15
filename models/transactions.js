@@ -46,9 +46,21 @@ const createTransaction = (pk_transaction,fk_user,description, amount) => {
     return transaction
 }
 
+/**
+ * Get a transaction
+ * @param {number} fk_user transaction primary key
+ * @returns {{pk_transaction: 1, fk_user: 123, description: "Compra de ticket", amount: 500.5 }} List of transactions for each user
+ */
+ const getTransactionsXuser = (fk_user) => {
+
+    let transaction = postgresql.public.many(`select * from transactions where fk_user = '${fk_user}'`);
+    return transaction
+}
+
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactionsXuser
 
 }

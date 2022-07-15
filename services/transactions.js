@@ -46,10 +46,24 @@ const transactionModel = require('../models/transactions')
     }
 }
 
+/**
+ * Get a transaction
+ * @param {number} fk_user transaction primary key
+ * @returns {{pk_transaction: 1, fk_user: 123, description: "Compra de ticket", amount: 500.5 }} List of transactions for each user
+ */
+ const getTransactionsXuser = async (fk_user) => {
+    try {
+        return await transactionModel.getTransactionsXuser(fk_user)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
 
 
 module.exports = {
     createtransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactionsXuser
 }
