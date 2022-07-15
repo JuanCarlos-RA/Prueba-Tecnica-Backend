@@ -29,9 +29,26 @@ const createTransaction = (pk_transaction,fk_user,description, amount) => {
     return transaction
 }
 
+/**
+ * Update an specific transaction
+ * @param {number} pk_transaction transaction primary key
+ * @param {number} fk_user transaction foreign key to user
+ * @param {string} description transaction description
+ * @param {float} amount transaction amount
+ * @returns {{pk_transaction: 1, fk_user: 123, description: "Devolucion de ticket", amount: 660.5 }}
+ */
+ const updateTransaction = (pk_transaction,fk_user,description, amount) => {
+
+    let transaction = postgresql.public.one(`update transactions SET fk_user = '${fk_user}',
+                                                            amount = '${amount}',
+                                                            description = '${description}'
+                                                            where pk_transaction = '${pk_transaction}'  returning *;`);
+    return transaction
+}
 
 module.exports = {
     createTransaction,
     getTransaction,
+    updateTransaction
 
 }
