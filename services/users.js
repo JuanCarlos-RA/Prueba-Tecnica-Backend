@@ -32,7 +32,7 @@ const createUser = async (pk_user, name) => {
  * @param {number} pk_user User id
  * @param {string} name User name
  * @param {boolean} status User status
- * @returns {{pk_user: 1, name: "Juan"}}
+ * @returns {{pk_user: 1, name: "Juan", status: true}}
  */
  const updateUser = async (pk_user, name, status) => {
     try {
