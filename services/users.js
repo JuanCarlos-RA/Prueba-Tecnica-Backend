@@ -27,9 +27,25 @@ const createUser = async (pk_user, name) => {
     }
 }
 
+/**
+ * Update an user
+ * @param {number} pk_user User id
+ * @param {string} name User name
+ * @param {boolean} status User status
+ * @returns {{pk_user: 1, name: "Juan"}}
+ */
+ const updateUser = async (pk_user, name, status) => {
+    try {
+        return usersModel.updateUser(pk_user, name, status)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
 
 
 module.exports = {
     getUser,
-    createUser
+    createUser,
+    updateUser
 }
