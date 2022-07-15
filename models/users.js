@@ -1,4 +1,4 @@
-const { postgresql } = require('../databases/postgresql')
+const { postgresql } = require('../databases/postgresql');
 
 /**
  * Get an specific user
@@ -45,15 +45,18 @@ const getUser = (pk_user) => {
 /**
  * Delete an specific user
  * @param {number} pk_user User primary key
- * @returns {pk_user: 1} User primary key
+ * @returns {pk_user: 123} User primary key
  */
 const deleteUser = (pk_user) => {
 
-    throw new Error('Method not implemented.');
+    let user = postgresql.public.one(`delete from users where pk_user = '${pk_user}' returning pk_user;`);
+    
+    return user
 }
 
 module.exports = {
     createUser,
     getUser,
-    updateUser
+    updateUser,
+    deleteUser
 }

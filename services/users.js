@@ -28,11 +28,11 @@ const createUser = async (pk_user, name) => {
 }
 
 /**
- * Update an user
+ * Update an espcific user
  * @param {number} pk_user User id
  * @param {string} name User name
  * @param {boolean} status User status
- * @returns {{pk_user: 1, name: "Juan", status: true}}
+ * @returns {{pk_user: 1, name: "Juan", status: true}} User schema
  */
  const updateUser = async (pk_user, name, status) => {
     try {
@@ -42,10 +42,22 @@ const createUser = async (pk_user, name) => {
     }
 }
 
-
+/**
+ * Delete an espcific user
+ * @param {number} pk_user User id
+ * @returns {{pk_user: 1}} User primary key
+ */
+ const deleteUser = async (pk_user) => {
+    try {
+        return usersModel.deleteUser(pk_user)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
 
 module.exports = {
     getUser,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
